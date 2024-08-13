@@ -1,9 +1,12 @@
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+
 class Customerlogin:
     def __init__(self, driver):
         self.driver = driver
+
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/customer/account/create/')
 
@@ -21,9 +24,17 @@ class Customerlogin:
         confirm_field.send_keys(confirm_pas)
         submit.click()
 
+    def check_success_text(self, expected_text):
+        registering = WebDriverWait(self.driver, 10).until(
+            EC.presence_of_element_located((By.XPATH, '//*[@id="maincontent"]/div[1]/div[2]/div/div/div'))
+
+        )
+        assert registering.text == expected_text
+
     def check_text(self, expected_text):
         registering = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="maincontent"]/div[2]'))
+
         )
         assert registering.text == expected_text
 
@@ -32,5 +43,3 @@ class Customerlogin:
             EC.presence_of_element_located((By.XPATH, '//*[@id="email_address-error"]'))
         )
         assert email.text == expected_text
-
-

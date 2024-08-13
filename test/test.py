@@ -1,6 +1,5 @@
 import pytest
 from selenium import webdriver
-from time import sleep
 from pages.customer_login import Customerlogin
 
 
@@ -14,9 +13,9 @@ def driver():
 def test_auth(driver):
     login_page = Customerlogin(driver)
     login_page.open_page()
-    login_page.registration_form('Test', 'Testov', 'test44@yandex.ru', 'privet!!@2222',
+    login_page.registration_form('Test', 'Testov', 'python56@yandex.ru', 'privet!!@2222',
                                  'privet!!@2222')
-    login_page.check_text('Thank you for registering with Main Website Store.')
+    login_page.check_success_text('Thank you for registering with Main Website Store.')
 
 
 def test_exist_email(driver):
@@ -36,4 +35,3 @@ def test_incorrect_email(driver):
                                  'privet!!@2222')
 
     login_page.check_email('Please enter a valid email address (Ex: johndoe@domain.com).')
-
