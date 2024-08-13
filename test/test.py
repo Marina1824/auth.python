@@ -1,9 +1,7 @@
 import pytest
 from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.wait import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
 from time import sleep
+from pages.customer_login import Customerlogin
 
 
 @pytest.fixture()
@@ -14,27 +12,28 @@ def driver():
 
 
 def test_auth(driver):
-    driver.get('https://magento.softwaretestingboard.com/customer/account/create/')
-    first = "Test"
-    last = "Testov"
-    email = 'test543@yandex.ru'
-    password = 'privet!!@2222'
-    confirm_pas = 'privet!!@2222'
+    login_page = Customerlogin(driver)
+    login_page.open_page()
+    login_page.registration_form('Test', 'Testov', 'test44@yandex.ru', 'privet!!@2222',
+                                 'privet!!@2222')
+    login_page.check_text('Thank you for registering with Main Website Store.')
 
-    first_name = driver.find_element(By.ID, 'firstname')
-    first_name.send_keys(first)
-    last_name = driver.find_element(By.ID, 'lastname')
-    last_name.send_keys(last)
-    email_field = driver.find_element(By.ID, 'email_address')
-    email_field.send_keys(email)
-    password_field = driver.find_element(By.ID, 'password')
-    password_field.send_keys(password)
-    confirm_field = driver.find_element(By.ID, 'password-confirmation')
-    confirm_field.send_keys(confirm_pas)
-    submit = driver.find_element(By.CLASS_NAME, 'submit')
-    submit.click()
-    registering = WebDriverWait(driver, 10).until(
-        EC.presence_of_element_located((By.XPATH, '//*[@id="maincontent"]/div[1]/div[2]/div/div/div'))
-    )
-    assert registering.text == "Thank you for registering with Main Website Store."
-    sleep(3)
+
+def test_exist_email(driver):
+    login_page = Customerlogin(driver)
+    login_page.open_page()
+    login_page.registration_form('Test', 'Testov', 'test44@yandex.ru', 'privet!!@2222',
+                                 'privet!!@2222')
+
+    login_page.check_text('There is already an account with this email address. If you are sure that it is your email '
+                          'address, click here to get your password and access your account.')
+
+
+def test_incorrect_email(driver):
+    login_page = Customerlogin(driver)
+    login_page.open_page()
+    login_page.registration_form('Test', 'Testov', 'test44', 'privet!!@2222',
+                                 'privet!!@2222')
+
+    login_page.check_email('Please enter a valid email address (Ex: johndoe@domain.com).')
+
