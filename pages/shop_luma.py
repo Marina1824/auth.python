@@ -22,7 +22,6 @@ class ShopLuma:
         number = int(total.split()[0])
         assert check_count == number
 
-
     def compare_luma(self):
         item = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'product-image-wrapper'))
@@ -39,7 +38,6 @@ class ShopLuma:
             EC.presence_of_element_located((By.XPATH, '//*[@id="compare-items"]/li/strong/a'))
         )
         assert item_text == compare_text.text
-
 
     def wishlist_luma(self, expected_text):
         item = WebDriverWait(self.driver, 10).until(

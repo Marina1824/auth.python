@@ -15,10 +15,12 @@ def test_filter(driver):
     filter_item.open_page()
     filter_item.filter()
 
+
 def test_compare(driver):
     compare = ShopLuma(driver)
     compare.open_page()
     compare.compare_luma()
+
 
 def test_wishlist(driver):
     compare = ShopLuma(driver)
