@@ -1,25 +1,11 @@
-import pytest
-from selenium import webdriver
-from pages.customer_login import Customerlogin
-
-
-@pytest.fixture()
-def driver():
-    chrome_driver = webdriver.Chrome()
-    chrome_driver.maximize_window()
-    yield chrome_driver
-
-
-def test_auth(driver):
-    login_page = Customerlogin(driver)
+def test_auth(login_page):
     login_page.open_page()
-    login_page.registration_form('Test', 'Testov', 'python56@yandex.ru', 'privet!!@2222',
+    login_page.registration_form('Test', 'Testov', 'python1356@yandex.ru', 'privet!!@2222',
                                  'privet!!@2222')
     login_page.check_success_text('Thank you for registering with Main Website Store.')
 
 
-def test_exist_email(driver):
-    login_page = Customerlogin(driver)
+def test_exist_email(login_page):
     login_page.open_page()
     login_page.registration_form('Test', 'Testov', 'test44@yandex.ru', 'privet!!@2222',
                                  'privet!!@2222')
@@ -28,8 +14,7 @@ def test_exist_email(driver):
                           'address, click here to get your password and access your account.')
 
 
-def test_incorrect_email(driver):
-    login_page = Customerlogin(driver)
+def test_incorrect_email(login_page):
     login_page.open_page()
     login_page.registration_form('Test', 'Testov', 'test44', 'privet!!@2222',
                                  'privet!!@2222')
