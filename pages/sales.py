@@ -11,19 +11,19 @@ class Sales:
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/sale.html')
 
-    def items(self, women_url):
+    def open_women_items(self, women_url):
         shop_women = self.driver.find_element(By.CLASS_NAME, 'more')
         shop_women.click()
         assert self.driver.current_url == women_url
 
-    def jackets(self):
+    def open_jackets(self):
         jackets = self.driver.find_element(By.XPATH, '//*[@id="maincontent"]/div[4]/div[2]/div/div/ul[1]/li[2]/a')
         text = jackets.text
         jackets.click()
         title_page = self.driver.find_element(By.CLASS_NAME, 'base')
         assert title_page.text == text
 
-    def compare_delete(self):
+    def add_to_compare_and_delete(self):
         mens = self.driver.find_element(By.CLASS_NAME, 'sale-mens')
         mens.click()
         item = WebDriverWait(self.driver, 10).until(

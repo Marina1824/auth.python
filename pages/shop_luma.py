@@ -11,7 +11,7 @@ class ShopLuma:
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/collections/eco-friendly.html')
 
-    def filter(self):
+    def add_item_to_filter(self):
         new = self.driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[9]')
         new.click()
         yes = self.driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[9]/div[2]/ol/li[1]/a')
@@ -21,7 +21,7 @@ class ShopLuma:
         number = int(total.split()[0])
         assert check_count == number
 
-    def compare_luma(self):
+    def add_item_to_compare(self):
         item = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'product-image-wrapper'))
         )
@@ -38,7 +38,7 @@ class ShopLuma:
         )
         assert item_text == compare_text.text
 
-    def wishlist_luma(self, expected_text):
+    def add_to_wishlis(self, expected_text):
         item = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'product-image-wrapper'))
         )
