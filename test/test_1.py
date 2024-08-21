@@ -19,4 +19,4 @@ def test_create_with_incorrect_email(login_page):
     login_page.registration_form('Test', 'Testov', 'test44', 'privet!!@2222',
                                  'privet!!@2222')
 
-    login_page.check_email('Please enter a valid email address (Ex: johndoe@domain.com).')
+    login_page.exist_email_message_is('Please enter a valid email address (Ex: johndoe@domain.com).')

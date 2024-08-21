@@ -38,8 +38,9 @@ class Customerlogin:
         )
         assert registering.text == expected_text
 
-    def check_email(self, expected_text):
+    def exist_email_message_is(self, expected_text):
         email = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.XPATH, '//*[@id="email_address-error"]'))
         )
         assert email.text == expected_text
+

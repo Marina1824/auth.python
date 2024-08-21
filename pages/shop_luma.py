@@ -38,7 +38,7 @@ class ShopLuma:
         )
         assert item_text == compare_text.text
 
-    def add_to_wishlis(self, expected_text):
+    def add_item_to_wishlist(self):
         item = WebDriverWait(self.driver, 10).until(
             EC.presence_of_element_located((By.CLASS_NAME, 'product-image-wrapper'))
         )
@@ -48,5 +48,7 @@ class ShopLuma:
             EC.presence_of_element_located((By.CLASS_NAME, 'towishlist'))
         )
         actions.click(wishlist).perform()
+
+    def check_wish_list_message_is(self, expected_text):
         item_text = self.driver.find_element(By.CLASS_NAME, 'messages').text
         assert item_text == expected_text
