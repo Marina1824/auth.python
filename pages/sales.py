@@ -10,6 +10,7 @@ class Sales:
 
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/sale.html')
+        self.driver.find_element(By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button").click()
 
     def open_women_items(self, women_url):
         shop_women = self.driver.find_element(By.CLASS_NAME, 'more')

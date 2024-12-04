@@ -2,6 +2,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from time import sleep
 
 
 class ShopLuma:
@@ -10,6 +11,8 @@ class ShopLuma:
 
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/collections/eco-friendly.html')
+        self.driver.find_element(By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button").click()
+
 
     def add_item_to_filter(self):
         new = self.driver.find_element(By.XPATH, '//*[@id="narrow-by-list"]/div[9]')
