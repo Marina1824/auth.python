@@ -9,8 +9,9 @@ class Customerlogin:
 
     def open_page(self):
         self.driver.get('https://magento.softwaretestingboard.com/customer/account/create/')
-        self.driver.find_element(By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button").click()
-
+        buttons = self.driver.find_elements(By.CSS_SELECTOR, "button.fc-button.fc-cta-consent.fc-primary-button")
+        if len(buttons) > 0:
+            buttons[0].click()
 
     def registration_form(self, first, last, email, password, confirm_pas):
         first_name = self.driver.find_element(By.ID, 'firstname')
