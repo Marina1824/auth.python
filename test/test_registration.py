@@ -1,6 +1,16 @@
+import random
+import string
+
+
+def generate_random_email(domain="example.com", length=10):
+    username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
+    return f"{username}@{domain}"
+
+
 def test_auth(login_page):
     login_page.open_page()
-    login_page.registration_form('Test', 'Testov', 'python136@yandex.ru', 'privet!!@2222',
+    random_email = generate_random_email(domain="mail.com", length=12)
+    login_page.registration_form('Test', 'Testov', random_email, 'privet!!@2222',
                                  'privet!!@2222')
     login_page.check_success_text('Thank you for registering with Main Website Store.')
 
