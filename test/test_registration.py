@@ -1,7 +1,9 @@
 import random
 import string
+import pytest
 
 
+@pytest.mark.regression
 def generate_random_email(domain="example.com", length=10):
     username = ''.join(random.choices(string.ascii_lowercase + string.digits, k=length))
     return f"{username}@{domain}"

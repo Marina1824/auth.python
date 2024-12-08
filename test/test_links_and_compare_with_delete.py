@@ -1,3 +1,7 @@
+import pytest
+
+
+@pytest.mark.extended
 def test_check_women_sales_url(sales):
     sales.open_page()
     sales.open_women_items('https://magento.softwaretestingboard.com/promotions/women-sale.html')

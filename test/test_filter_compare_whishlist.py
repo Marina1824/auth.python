@@ -1,3 +1,7 @@
+import pytest
+
+
+@pytest.mark.smoke
 def test_select_new_in_filter(shop_luma):
     shop_luma.open_page()
     shop_luma.add_item_to_filter()
