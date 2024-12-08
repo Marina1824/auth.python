@@ -27,22 +27,18 @@ jobs:
           python-version: '3.12.4'
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Install Chrome dependencies
-        run: |
-          sudo apt-get update
-          sudo apt-get install -y google-chrome-stable
       - name: run all tests
         if: "github.event.inputs.deployment_target == 'all'"
         run: pytest
       - name: run smoke tests
         if: "github.event.inputs.deployment_target == 'smoke'"
-        run: pytests -m smoke
+        run: pytest -m smoke
       - name: run regression tests
         if: "github.event.inputs.deployment_target == 'regression'"
         run: pytest -m regression
       - name: run extended tests
         if: "github.event.inputs.deployment_target == 'extended'"
-        run: pytests -m extended
+        run: pytest -m extended
         
       
       
